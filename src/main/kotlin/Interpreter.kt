@@ -42,9 +42,13 @@ class Interpreter(file: File) {
         fun put(key: K, value: V) = source.first().put(key, value)
 
         /**
-         * It sets the variable to null by removing it from the map.
+         * Checks whether there are opened scopes or not.
+         *
+         * @return ``true`` if there are opened scopes, ``false`` otherwise.
          */
-        fun remove(key: K) = source.first().remove(key)
+        fun isScopeOpened(): Boolean {
+            return !source.isEmpty()
+        }
 
         /** Insert a new memory layer at the start of the list */
         fun openScope() = source.add(0,LinkedHashMap())
@@ -72,6 +76,9 @@ class Interpreter(file: File) {
 
         // Close global scope
         memory.closeScope()
+
+        // Check there are not opened scopes
+        if (memory.isScopeOpened()) throw RuntimeException("Closing '}' expected")
     }
 
     private fun parseVariable() {
