@@ -10,7 +10,8 @@ fun main(args: Array<String>) {
         var interpreter = Interpreter(file)
         interpreter.execute()
     } catch (e: Exception) {
-        e.printStackTrace()
+        // If an exception is caught, the error is printed to let the scripter know where the error is
+        println(e.message)
     }
 
 }
