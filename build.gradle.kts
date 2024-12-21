@@ -19,3 +19,13 @@ tasks.test {
 kotlin {
     jvmToolchain(21)
 }
+
+tasks.jar {
+    manifest {
+        attributes["Main-Class"] = "net.jorjai.MainKt"
+    }
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    from({
+        configurations.runtimeClasspath.get().filter { it.exists() }.map { zipTree(it) }
+    })
+}
