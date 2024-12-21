@@ -3,7 +3,6 @@ package net.jorjai
 import java.io.File
 import java.util.LinkedList
 import java.util.Scanner
-import kotlin.collections.LinkedHashMap
 
 class Interpreter(file: File) {
     var word = ""
@@ -18,7 +17,7 @@ class Interpreter(file: File) {
          * The first element of the list stores the variables local to the current scope.
          * The last element stores the variables global to the program.
          */
-        private val source = LinkedList<LinkedHashMap<K,V>>()
+        private val source = LinkedList<HashMap<K,V>>()
 
         /**
          * Looks for the value of the variable in the local scope. If not found, it recursively looks for it
