@@ -1,0 +1,9 @@
+x = 1
+scope {
+    y = x
+    print y
+    scope {
+        z = y
+        print z
+    }
+}
